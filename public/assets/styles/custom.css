@@ -1,0 +1,13 @@
+@media (min-width: 800px){
+	.menu-active .main-menu{
+		z-index: 41;
+	}
+	.menu-active .navigation .menu .sub-menu.dropup{
+		top: auto;
+		bottom: 48px;
+	}
+	.menu-active .mCustomScrollBox{
+		position: fixed;
+		width: 75px;
+	}
+}
