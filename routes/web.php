@@ -36,5 +36,5 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::post('transactions/store/{type}', [TransactionController::class, 'store'])->name('transactions.store');
 
     // Penarikan
-    Route::get('transactions/craete/{type}', [TransactionController::class, 'create'])->name('transactions.create');
+    Route::get('transactions/create/{type}', [TransactionController::class, 'create'])->name('transactions.create');
 });

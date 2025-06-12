@@ -44,11 +44,11 @@
                     </div>
                     <!-- /.dropdown js__dropdown -->
                     <div class="row">
-                        <div class="col-3">
+                        <div class="col-3 p-1S">
                             <input type="date" class="form-control" name="tanggal_transaction" id="tanggal"
-                                value="{{ date('d-m-Y') }}" required />
+                                value="{{ date('Y-m-d') }}" required />
                         </div>
-                        <div class="col-4">
+                        <div class="col-4 P-1">
                             <select name="store_id" id="store_id" class="form-control select2" required>
                                 <option value=""></option>
                                 @foreach ($stores as $store)
@@ -65,7 +65,7 @@
                 <div class="row content-form" style="display: none;">
 
                     <div class="col-4">
-                        <div class="box-content" style="padding: 10px !important;">
+                        <div class="box-content bordered" style="padding: 20px !important;">
                             <div class="mb-3">
                                 <span class="text-muted">Nama Toko</span>
                                 <br>
@@ -92,18 +92,25 @@
                         </div>
                     </div>
                     <div class="col-8">
-                        <div class="box-content" style="padding: 20px !important;">
-                            <input type="text" name="nomor_transaction" class="form-control" id="nomor_transaction"
-                                required placeholder="Masukkan Nomor Transaksi"
-                                value="{{ old('nomor_transaction') }}" />
-                        </div>
-                        <div class="box-content" style="padding: 20px !important;">
-                            <table class="table table-striped">
+                        <div class="box-content bordered" style="padding: 20px !important;">
+
+                            <div class="input-group margin-bottom-20">
+                                <div class="input-group-btn"><label for="ig-1" class="btn btn-default">Nomor
+                                        Transaksi</label></div>
+                                <!-- /.input-group-btn -->
+                                <input type="text" name="nomor_transaction" class="form-control" id="nomor_transaction"
+                                    required placeholder="Masukkan Nomor Transaksi..."
+                                    value="{{ old('nomor_transaction') }}" />
+                            </div>
+
+
+
+                            <table class="table mt-5">
                                 <tbody>
                                     @foreach ($products as $index => $product)
                                     <input type="hidden" name="product_id[{{ $index }}]" value="{{ $product->id }}" />
                                     <tr>
-                                        <td>{{ $product->name }}</td>
+                                        <td># {{ $product->name }}</td>
                                         <td width="20%"><input type="text"
                                                 class="form-control text-center format-rupiah" value="0"
                                                 name="qty[{{ $index }}]" placeholder="Qty" required /></td>
