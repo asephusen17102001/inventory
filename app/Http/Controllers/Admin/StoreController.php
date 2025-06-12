@@ -7,6 +7,8 @@ use App\Models\Store;
 use App\Http\Requests\StoreStoreRequest;
 use App\Http\Requests\UpdateStoreRequest;
 use App\Models\Branch;
+use Illuminate\Http\Request;
+
 
 class StoreController extends Controller
 {
@@ -101,5 +103,25 @@ class StoreController extends Controller
         //
         $store->delete();
         return response()->json(['message' => 'Hapus Toko']);
+    }
+
+
+
+    /**
+     * Get store by id for ajax request.
+     */
+    public function ajax_get_store(Request $request)
+    {
+        if (!$request->id) {
+            return response()->json(['error' => 'ID tidak diberikan'], 400);
+        }
+
+        $store = Store::where('id', $request->id)->first();
+
+        if (!$store) {
+            return response()->json(['error' => 'Store tidak ditemukan'], 404);
+        }
+
+        return response()->json($store);
     }
 }

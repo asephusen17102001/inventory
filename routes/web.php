@@ -23,12 +23,18 @@ Route::prefix('admin')->as('admin.')->group(function () {
     // Branch
     Route::resource('branches', BranchController::class)->names('branches');
 
+    // Ajax get store by id
+    Route::get('stores/ajax_get_store', [StoreController::class, 'ajax_get_store'])->name('stores.ajax_get_store');
     // Store
     Route::resource('stores', StoreController::class)->names('stores');
 
     // User
     Route::resource('users', UserController::class)->names('users');
 
-    // transaction IN
-    Route::get('/transactions/{type}', [TransactionController::class, 'index'])->name('admin.transactions.index');
+    // transaction 
+    Route::get('transactions/{type}', [TransactionController::class, 'index'])->name('transactions.index');
+    Route::post('transactions/store/{type}', [TransactionController::class, 'store'])->name('transactions.store');
+
+    // Penarikan
+    Route::get('transactions/craete/{type}', [TransactionController::class, 'create'])->name('transactions.create');
 });

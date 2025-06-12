@@ -101,15 +101,11 @@
                                 class="menu-icon far fa-list-alt"></i><span>Transaksi</span><span
                                 class="menu-arrow fa fa-angle-down"></span></a>
                         <ul class="sub-menu js__content">
-                            <li><a href="{{ route('admin.transactions.index', '/in') }}"><i
+                            <li><a href="{{ route('admin.transactions.index', ['type' => 'penarikan']) }}"><i
                                         class="far fa-arrow-alt-circle-right mr-2"></i>
-                                    Barang In</a></li>
-                            <li><a href="{{ route('admin.transactions.index', '/out') }}"><i
-                                        class="far fa-arrow-alt-circle-left mr-2"></i>
-                                    Barang Out</a></li>
+                                    Penarikan</a></li>
                         </ul>
                     </li>
-
                     <li>
                         <a class="waves-effect parent-item js__control" href="#"><i
                                 class="menu-icon fas fa-print"></i><span>Laporan</span><span

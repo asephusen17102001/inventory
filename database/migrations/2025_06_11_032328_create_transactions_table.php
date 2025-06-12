@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->dateTime('tanggal_transaction')->nullable()->default(now());
             $table->integer('store_id')->unsigned();
             $table->string('nomor_transaction')->nullable();
-            $table->dateTime('tanggal_ransaction')->nullable()->default(new \DateTime());
-
+            $table->enum('type', ['penarikan', 'pemasangan'])->default('penarikan');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
