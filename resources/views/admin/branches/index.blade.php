@@ -31,7 +31,7 @@
 
                 <div class="table-responsive">
                     <table class="table table-striped dataTable">
-                        <thead>
+                        <thead class="table-secondary text-black">
                             <tr>
                                 <th width="5%" class="text-center">No</th>
                                 <th>Branch</th>

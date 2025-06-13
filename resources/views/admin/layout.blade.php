@@ -38,6 +38,21 @@
     <!-- Select2 -->
     <link rel="stylesheet" href="{{ asset('assets/plugin/select2/css/select2.min.css') }}">
 
+    <style>
+        tr>th {
+            font-size: 12px !important;
+            font-weight: 900 !important;
+            vertical-align: middle !important;
+        }
+
+        tr>td {
+            font-size: 12px !important;
+            font-weight: 600 !important;
+            vertical-align: middle !important;
+        }
+
+    </style>
+
     @stack('css-custome')
 
 </head>

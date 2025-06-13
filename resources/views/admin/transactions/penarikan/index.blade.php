@@ -43,7 +43,7 @@ use Carbon\Carbon;
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped dataTable">
-                        <thead>
+                        <thead class="table-secondary text-black">
                             <tr>
                                 <th width="5%" class="text-center">No</th>
                                 <th>Tanggal</th>
@@ -58,7 +58,12 @@ use Carbon\Carbon;
                                 <td class="text-center">{{ ($index+1) }}.</td>
                                 <td>{{ $transaction->getTanggalRansactionAttribute($transaction->tanggal_transaction) }}
                                 </td>
-                                <td>{{ $transaction->nomor_transaction }}</td>
+                                <td>
+                                    <a
+                                        href="{{ route('admin.transactions.show', ['type' => 'penarikan', 'transaction' => $transaction->id]) }}">
+                                        {{ $transaction->nomor_transaction }}
+                                    </a>
+                                </td>
                                 <td>
                                     {{ $transaction->store->branch->name }} - {{ $transaction->store->name }}
                                 </td>
