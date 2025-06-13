@@ -31,10 +31,9 @@ Route::prefix('admin')->as('admin.')->group(function () {
     // User
     Route::resource('users', UserController::class)->names('users');
 
-    // transaction 
+    // transaction penarikan and pemasangan
     Route::get('transactions/{type}', [TransactionController::class, 'index'])->name('transactions.index');
     Route::post('transactions/store/{type}', [TransactionController::class, 'store'])->name('transactions.store');
-
-    // Penarikan
     Route::get('transactions/create/{type}', [TransactionController::class, 'create'])->name('transactions.create');
+    Route::get('transactions/show/{type}/{transaction}', [TransactionController::class, 'show'])->name('transactions.show');
 });

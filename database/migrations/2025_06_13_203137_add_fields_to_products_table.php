@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             //
-            $table->softDeletes();
+            $table->integer('stock_recondition')->default(0);
+            $table->bigInteger('price')->default(0);
+            $table->bigInteger('price_recondition')->default(0);
         });
     }
 
@@ -24,8 +26,7 @@ return new class extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             //
-            $table->dropSoftDeletes();
-            $table->dropColumn('deleted_at');
+            $table->dropColumn(['stock_recondition', 'price', 'price_recondition']);
         });
     }
 };

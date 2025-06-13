@@ -16,20 +16,23 @@ class TransactionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($type)
+    public function index(Request $request, $type)
     {
-
-
+        $f_tanggal = date('Y-m-d');
+        if (@$request->input('f_tanggal')) {
+            $f_tanggal = $request->input('f_tanggal');
+        }
         $transactions = Transaction::where('type', $type)
+            ->whereDate('tanggal_transaction', $f_tanggal)
             ->with(['store', 'detailProductTransactions.product'])
             ->orderBy('tanggal_transaction', 'ASC')
             ->get();
 
 
         if ($type == "penarikan") {
-            return view('admin.transactions.penarikan.index', compact('type', 'transactions'));
+            return view('admin.transactions.penarikan.index', compact('type', 'transactions', 'f_tanggal'));
         } else {
-            return view('admin.transactions.pemasangan.index', compact('type', 'transactions'));
+            return view('admin.transactions.pemasangan.index', compact('type', 'transactions', 'f_tanggal'));
         }
     }
 
@@ -92,9 +95,14 @@ class TransactionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Transaction $transaction)
+    public function show($type, Transaction $transaction)
     {
-        //
+
+        if ($type == "penarikan") {
+            return view('admin.transactions.penarikan.show', compact('type', 'transaction'));
+        } else {
+            return view('admin.transactions.pemasangan.show', compact('type', 'transaction'));
+        }
     }
 
     /**

@@ -54,11 +54,11 @@
                                 </td>
                                 <td class="text-center">
                                     <a href="{{ route('admin.stores.show', $store->id) }}"
-                                        class="btn btn-xs btn-info  ">Detail</a>
+                                        class="btn btn-xs btn-info  "><i class="fa fa-eye"></i></a>
                                     <a href="{{ route('admin.stores.edit', $store->id) }}"
-                                        class="btn btn-xs btn-primary">Edit</a>
+                                        class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                                     <button type="button" class="btn btn-xs btn-danger btn-delete"
-                                        onclick="confirm_delete(`{{ route('admin.stores.destroy', $store->id) }}`)">Delete</button>
+                                        onclick="confirm_delete(`{{ route('admin.stores.destroy', $store->id) }}`)"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                             @endforeach

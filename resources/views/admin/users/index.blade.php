@@ -49,9 +49,9 @@
                                 <td><span class="badge badge-info">{{ $user->role }}</span></td>
                                 <td class="text-center">
                                     <a href="{{ route('admin.users.edit', $user->id) }}"
-                                        class="btn btn-xs btn-primary">Edit</a>
+                                        class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                                     <button type="button" class="btn btn-xs btn-danger btn-delete"
-                                        onclick="confirm_delete(`{{ route('admin.users.destroy', $user->id) }}`)">Delete</button>
+                                        onclick="confirm_delete(`{{ route('admin.users.destroy', $user->id) }}`)"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                             @endforeach

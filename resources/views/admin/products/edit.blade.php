@@ -4,7 +4,7 @@
 @section('content')
 <div class="main-content">
     <div class="row small-spacing justify-content-center">
-        <div class="col-6">
+        <div class="col-8">
             <div class="box-content bordered" style="padding: 3% !important;">
                 <h4 class="box-title"><i class="fa fa-edit"></i> Form Edit Product</h4>
                 <!-- /.box-title -->
@@ -52,19 +52,64 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="row form-group">
+
+                    <div class="row form-group mt-5">
                         <div class="col-3 pt-2">
-                            <label for="stock">Stock Product <sup class="text-danger">*</sup></label>
+                            <label for="stock">Stock [ New ]</label>
                         </div>
-                        <div class="col-9">
-                            <input type="number" name="stock" class="form-control" id="stock"
-                                placeholder="Stock Product ..." value="{{ old('stock') ?? $product->stock }}" required>
+                        <div class="col-4">
+                            <input type="text" name="stock" class="format-rupiah form-control text-right" id="stock"
+                                placeholder="Stock [ New ]..." value="{{ old('stock') ?? $product->stock }}" required>
 
                             @error('stock')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
+                    <div class="row form-group">
+                        <div class="col-3 pt-2">
+                            <label for="stock_recondition">Stock [ Recondition ]</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" name="stock_recondition" class="format-rupiah form-control text-right"
+                                id="stock_recondition" placeholder="Stock [ Recondition ] ..."
+                                value="{{ old('stock_recondition') ?? $product->stock_recondition }}" required>
+
+                            @error('stock_recondition')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
+
+                    <div class="row form-group mt-5">
+                        <div class="col-3 pt-2">
+                            <label for="price">Harga [ New ]</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" name="price" class="format-rupiah form-control text-right" id="price"
+                                placeholder="Harga [ New ]..." value="{{ old('price') ?? $product->price }}" required>
+
+                            @error('price')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3 pt-2">
+                            <label for="price_recondition">Harga [ Recondition ]</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" name="price_recondition" class="format-rupiah form-control text-right"
+                                id="price_recondition" placeholder="Harga [ Recondition ] ..."
+                                value="{{ old('price_recondition') ?? $product->price_recondition }}" required>
+
+                            @error('price_recondition')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
                     <div class="float-right mt-5">
                         <a href="{{ route('admin.products.index') }}" class="btn btn-xs btn-dark">Cancel</a>
                         <button type="submit" class="btn btn-xs btn-primary">Save Data</button>
@@ -77,3 +122,10 @@
     </div>
 </div>
 @endsection
+
+@push('js-custome')
+<script>
+    $('.format-rupiah').keyup();
+
+</script>
+@endpush

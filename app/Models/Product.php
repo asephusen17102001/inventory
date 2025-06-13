@@ -12,6 +12,6 @@ class Product extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['name', 'status', 'stock'];
+    protected $fillable = ['name', 'status', 'stock', 'stock_recondition', 'price', 'price_recondition'];
     protected $dates = ['deleted_at'];
 }

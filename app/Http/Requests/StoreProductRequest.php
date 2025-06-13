@@ -14,6 +14,17 @@ class StoreProductRequest extends FormRequest
         return true;
     }
 
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'stock' => $this->convertCurrencyToBigInt($this->stock),
+            'stock_recondition' => $this->convertCurrencyToBigInt($this->stock_recondition),
+            'price' => $this->convertCurrencyToBigInt($this->price),
+            'price_recondition' => $this->convertCurrencyToBigInt($this->price_recondition),
+        ]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,7 +36,25 @@ class StoreProductRequest extends FormRequest
             //
             'name' => 'required|string|unique:products,name',
             'status' => 'required',
-            'stock' => 'required'
+            'stock' => 'required|integer',
+            'stock_recondition' => 'required|integer',
+            'price' => 'required|integer|min:0',
+            'price_recondition' => 'required|integer|min:0',
         ];
+    }
+
+
+    private function convertCurrencyToBigInt($value): int
+    {
+        if (!$value) {
+            return 0;
+        }
+
+        // Hilangkan semua karakter kecuali angka dan koma
+        $value = preg_replace('/[^\d,]/', '', $value);
+        $value = str_replace(',', '.', $value);
+        $value = str_replace('.', '', $value);
+
+        return (int) $value;
     }
 }

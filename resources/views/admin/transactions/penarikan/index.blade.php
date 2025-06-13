@@ -2,7 +2,7 @@
 use Carbon\Carbon;
 @endphp
 @extends('admin.layout')
-@section('title', 'Branch')
+@section('title', 'Data Transaksi Penarikan Product')
 @push('css-custome')
 
 <style>
@@ -32,7 +32,15 @@ use Carbon\Carbon;
                     <!-- /.sub-menu -->
                 </div>
                 <!-- /.dropdown js__dropdown -->
-
+                <div class="row mb-3">
+                    <div class="col-9"></div>
+                    <div class="col-3">
+                        <form action="{{ route('admin.transactions.index', ['type' => 'penarikan']) }}" method="GET"
+                            id="form-filter">
+                            <input type="date" name="f_tanggal" class="form-control" value="{{ $f_tanggal }}">
+                        </form>
+                    </div>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-striped dataTable">
                         <thead>
@@ -41,7 +49,7 @@ use Carbon\Carbon;
                                 <th>Tanggal</th>
                                 <th>Nomor Transaction</th>
                                 <th>Branch - Toko</th>
-                                {{-- <th class="text-center">Action</th> --}}
+                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,13 +62,10 @@ use Carbon\Carbon;
                                 <td>
                                     {{ $transaction->store->branch->name }} - {{ $transaction->store->name }}
                                 </td>
-                                {{-- <td class="text-center">
-                                    <a href="{{ route('admin.branches.edit', $branch->id) }}"
-                                class="btn btn-xs btn-primary">Edit</a>
-                                <button type="button" class="btn btn-xs btn-danger btn-delete"
-                                    onclick="confirm_delete(`{{ route('admin.branches.destroy', $branch->id) }}`)">Delete</button>
-
-                                </td> --}}
+                                <td class="text-center">
+                                    <a href="{{ route('admin.transactions.show', ['type' => 'penarikan', 'transaction' => $transaction->id]) }}"
+                                        class="btn btn-xs btn-primary "><i class="fa fa-eye"></i></a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -82,9 +87,10 @@ use Carbon\Carbon;
     $(document).ready(function () {
         $('.dataTable').dataTable();
 
-        $('.format-rupiah').on('keyup', function () {
-            $(this).val(formatRupiah(this.value, 'Rp. '));
+        $('[name="f_tanggal"]').change(function () {
+            $('#form-filter').submit();
         });
+
 
         @session('success')
         alert_success("{{ session('success') }}");
@@ -93,7 +99,7 @@ use Carbon\Carbon;
         @session('failed')
         alert_success("{{ session('failed') }}");
         @endsession
-    })
+    });
 
 </script>
 @endpush
