@@ -1,16 +1,6 @@
 @extends('admin.layout')
 @section('title', 'Toko')
-@push('css-custome')
 
-<style>
-    tr>td {
-        font-size: 12px !important;
-        font-weight: 600 !important;
-        vertical-align: middle !important;
-    }
-
-</style>
-@endpush
 
 @section('content')
 <div class="main-content">
