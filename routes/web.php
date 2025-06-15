@@ -25,6 +25,10 @@ Route::prefix('admin')->as('admin.')->group(function () {
 
     // Ajax get store by id
     Route::get('stores/ajax_get_store', [StoreController::class, 'ajax_get_store'])->name('stores.ajax_get_store');
+    // Store save product by store
+    Route::post('stores/save-store-products/{store}', [StoreController::class, 'save_store_product'])->name('stores.save_store_product');
+    // Delete store product
+    Route::delete('stores/delete-store-product/{storeProduct}', [StoreController::class, 'delete_store_product'])->name('stores.delete_store_product');
     // Store
     Route::resource('stores', StoreController::class)->names('stores');
 

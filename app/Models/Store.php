@@ -27,4 +27,9 @@ class Store extends Model
     {
         return $this->belongsTo(Branch::class);
     }
+
+    public function storeProducts()
+    {
+        return $this->hasMany(StoreProduct::class);
+    }
 }

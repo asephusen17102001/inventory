@@ -1,28 +1,5 @@
 @extends('admin.layout')
 @section('title', 'Detail Transaksi Penarikan Product')
-@push('css-custome')
-
-<style>
-    tr>td {
-        font-size: 12px !important;
-        font-weight: 600 !important;
-        vertical-align: middle !important;
-    }
-
-    .select2-selection__rendered {
-        line-height: 45px !important;
-    }
-
-    .select2-container .select2-selection--single {
-        height: 45px !important;
-    }
-
-    .select2-selection__arrow {
-        height: 45px !important;
-    }
-
-</style>
-@endpush
 
 @section('content')
 <div class="main-content">

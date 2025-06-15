@@ -90,7 +90,7 @@
 
                 <!-- /.title -->
                 <ul class="menu js__accordion">
-                    <li class="{{ (strpos(Route::currentRouteName(), 'admin.dashboard') == 0) ? 'active' : '' }}">
+                    <li class="">
                         <a class="waves-effect" href="{{ route('admin.dashboard') }}"><i
                                 class="menu-icon mdi mdi-view-dashboard"></i><span>Dashboard</span></a>
                     </li>
@@ -119,6 +119,10 @@
                             <li><a href="{{ route('admin.transactions.index', ['type' => 'penarikan']) }}"><i
                                         class="far fa-arrow-alt-circle-right mr-2"></i>
                                     Penarikan</a></li>
+
+                            <li><a href="{{ route('admin.transactions.index', ['type' => 'pemasangan']) }}"><i
+                                        class="far fa-arrow-alt-circle-right mr-2"></i>
+                                    Pemasangan</a></li>
                         </ul>
                     </li>
                     <li>

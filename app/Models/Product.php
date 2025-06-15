@@ -14,4 +14,9 @@ class Product extends Model
 
     protected $fillable = ['name', 'status', 'stock', 'stock_recondition', 'price', 'price_recondition'];
     protected $dates = ['deleted_at'];
+
+    public function storeProducts()
+    {
+        return $this->hasMany(StoreProduct::class);
+    }
 }

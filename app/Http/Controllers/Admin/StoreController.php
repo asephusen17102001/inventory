@@ -7,6 +7,8 @@ use App\Models\Store;
 use App\Http\Requests\StoreStoreRequest;
 use App\Http\Requests\UpdateStoreRequest;
 use App\Models\Branch;
+use App\Models\Product;
+use App\Models\StoreProduct;
 use Illuminate\Http\Request;
 
 
@@ -58,7 +60,16 @@ class StoreController extends Controller
      */
     public function show(Store $store)
     {
+        $store->load('storeProducts');
         //
+        $selectedProductIds = StoreProduct::where('store_id', $store->id)->pluck('product_id');
+
+
+        $products = $selectedProductIds->isEmpty()
+            ? Product::all()
+            : Product::whereNotIn('id', $selectedProductIds)->get();
+
+        return view('admin.stores.show', compact('store', 'products'));
     }
 
     /**
@@ -116,12 +127,53 @@ class StoreController extends Controller
             return response()->json(['error' => 'ID tidak diberikan'], 400);
         }
 
-        $store = Store::where('id', $request->id)->first();
+        $store = Store::with(['storeProducts.product'])
+            ->where('id', $request->id)
+            ->first();
 
         if (!$store) {
             return response()->json(['error' => 'Store tidak ditemukan'], 404);
         }
 
         return response()->json($store);
+    }
+
+
+    /**
+     * Store products for a specific store.
+     */
+    public function save_store_product(Request $request, Store $store)
+    {
+
+        $validated = $request->validate([
+            'product_id' => 'required',
+            'stock' => 'required',
+            'stock_product_repair' => 'required'
+        ]);
+
+        try {
+            $validated['store_id'] = $store->id;
+
+            StoreProduct::create($validated);
+
+            // Redirect back to the store's page with success message
+            return redirect()
+                ->route('admin.stores.show', ['store' => $store])
+                ->with('success', 'Produk berhasil disimpan untuk toko');
+        } catch (\Throwable $th) {
+            return back()
+                ->with('failed', 'Gagal menyimpan produk: ' . $th->getMessage())
+                ->withInput();
+        }
+    }
+
+    public function delete_store_product(StoreProduct $storeProduct)
+    {
+        try {
+            $storeProduct->delete();
+            return response()->json(['message' => 'Produk berhasil dihapus dari toko']);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => 'Gagal menghapus produk: ' . $th->getMessage()], 500);
+        }
     }
 }

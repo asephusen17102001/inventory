@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -29,11 +30,12 @@ class TransactionController extends Controller
             ->get();
 
 
-        if ($type == "penarikan") {
-            return view('admin.transactions.penarikan.index', compact('type', 'transactions', 'f_tanggal'));
-        } else {
-            return view('admin.transactions.pemasangan.index', compact('type', 'transactions', 'f_tanggal'));
-        }
+        // page penarikan
+        if ($type == "penarikan")  return view('admin.transactions.penarikan.index', compact('type', 'transactions', 'f_tanggal'));
+
+
+        // page pemasangan
+        return view('admin.transactions.pemasangan.index', compact('type', 'transactions', 'f_tanggal'));
     }
 
     /**
@@ -47,7 +49,7 @@ class TransactionController extends Controller
         if ($type == "penarikan") {
             return view('admin.transactions.penarikan.create', compact('type', 'stores', 'products'));
         } else {
-            return view('admin.transactions.pemasangan.create', compact('type'));
+            return view('admin.transactions.pemasangan.create', compact('type', 'stores', 'products'));
         }
     }
 
@@ -59,7 +61,6 @@ class TransactionController extends Controller
         //
         try {
 
-            // Create a new transaction
             $transaction = Transaction::create([
                 'nomor_transaction' => $request->input('nomor_transaction'),
                 'tanggal_transaction' => $request->input('tanggal_transaction'),
@@ -81,12 +82,14 @@ class TransactionController extends Controller
                 $product = Product::find($data['product_id']);
                 if ($type == 'penarikan') {
                     $product->stock += $data['qty'];
+                } else {
+                    $product->stock -= $data['qty'];
                 }
                 $product->save();
             }
 
             return redirect()->route('admin.transactions.index', ['type' => $type])
-                ->with('success', 'Transaction created successfully.');
+                ->with('success', 'Transaction ' . ucwords($type));
         } catch (\Throwable $th) {
             return back()->with('failed', $th->getMessage())->withInput();
         }
@@ -98,11 +101,12 @@ class TransactionController extends Controller
     public function show($type, Transaction $transaction)
     {
 
-        if ($type == "penarikan") {
-            return view('admin.transactions.penarikan.show', compact('type', 'transaction'));
-        } else {
-            return view('admin.transactions.pemasangan.show', compact('type', 'transaction'));
-        }
+        $transaction->load(['detailProductTransactions']);
+        // page penarikan
+        if ($type == "penarikan") return view('admin.transactions.penarikan.show', compact('type', 'transaction'));
+
+        // page pemasangan
+        return view('admin.transactions.pemasangan.show', compact('type', 'transaction'));
     }
 
     /**
