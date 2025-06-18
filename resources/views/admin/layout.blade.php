@@ -190,7 +190,7 @@
             <a href="#" class="ico-item mdi mdi-email notice-alarm js__toggle_open" data-target="#message-popup"></a>
             <a href="#" class="ico-item pulse"><span class="ico-item mdi mdi-bell notice-alarm js__toggle_open"
                     data-target="#notification-popup"></span></a>
-            <a href="#" class="ico-item mdi mdi-logout js__logout"></a>
+            <a href="{{ route('logout') }}" class="ico-item mdi mdi-logout"></a>
         </div>
         <!-- /.float-right -->
     </div>

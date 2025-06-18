@@ -7,13 +7,20 @@ use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 
+// default 
+Route::get('/', function () {
+    return view('auth.login');
+});
 
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-
-Route::prefix('admin')->as('admin.')->group(function () {
+Route::prefix('admin')->as('admin.')->middleware(['auth', 'role:admin'])->group(function () {
 
     // Dashboard 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
