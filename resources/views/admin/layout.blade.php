@@ -76,16 +76,16 @@
                 <a href="#" class="avatar"><img
                         src="{{ asset('assets/images/logo/logo-1.png') }}" alt=""><span
                         class="status online"></span></a>
-                <h5 class="name"><a href="profile.html">Admin</a></h5>
+                <h5 class="name"><a href="profile.html">{{ Auth::user()->name }}</a></h5>
                 <h5 class="position">Administrator</h5>
                 <!-- /.name -->
                 <div class="control-wrap js__drop_down">
                     <i class="fa fa-caret-down js__drop_down_button"></i>
                     <div class="control-list">
-                        <div class="control-item"><a href="#"><i class="fa fa-user"></i> Profile</a>
+                        <div class="control-item"><a href="javascript:void(0)"><i class="fa fa-user"></i> Profile</a>
                         </div>
-                        <div class="control-item"><a href="#"><i class="fas fa-cog"></i> Settings</a></div>
-                        <div class="control-item"><a href="#"><i class="fas fa-sign-out-alt"></i> Log out</a>
+                        <div class="control-item"><a href="javascript:void(0)"><i class="fas fa-cog"></i> Settings</a></div>
+                        <div class="control-item"><a href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> Log out</a>
                         </div>
                     </div>
                     <!-- /.control-list -->
