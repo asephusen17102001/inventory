@@ -26,6 +26,10 @@ class ReportController extends Controller
             $page = 'admin.reports.stock_repair';
         }
 
+        if ($type == "bk") {
+            $page = 'admin.reports.stock_bk';
+        }
+
         $products = Product::where('status', 'active')->orderBy('name')->get();
 
         if ($request->input('branch_id')) {

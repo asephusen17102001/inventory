@@ -15,23 +15,26 @@
     <title>@yield('title')</title>
 
     <!-- Main Styles -->
-    <link rel="stylesheet" href="{{ asset('assets/styles/style.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/styles/custom.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/styles/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/styles/custom.css') }}">
 
     <!-- Material Design Icon -->
-    <link rel="stylesheet" href="{{ asset('assets/fonts/material-design/css/materialdesignicons.css')}}">
+    <link rel="stylesheet"
+        href="{{ asset('assets/fonts/material-design/css/materialdesignicons.css') }}">
 
     <!-- mCustomScrollbar -->
-    <link rel="stylesheet" href="{{ asset('assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css')}}">
+    <link rel="stylesheet"
+        href="{{ asset('assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css') }}">
 
     <!-- Waves Effect -->
-    <link rel="stylesheet" href="{{ asset('assets/plugin/waves/waves.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/plugin/waves/waves.min.css') }}">
 
     <!-- Sweet Alert -->
     <link rel="stylesheet" href="{{ asset('assets/plugin/sweet-alert/sweetalert.css') }}">
 
     <!-- Data Tables -->
-    <link rel="stylesheet" href="{{ asset('assets/plugin/datatables/media/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('assets/plugin/datatables/media/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet"
         href="{{ asset('assets/plugin/datatables/extensions/Responsive/css/responsive.bootstrap.min.css') }}">
 
@@ -50,7 +53,6 @@
             font-weight: 600 !important;
             vertical-align: middle !important;
         }
-
     </style>
 
     @stack('css-custome')
@@ -63,7 +65,8 @@
             <a href="index.html" class="logo"><i class="ico mdi mdi-cube-outline"></i>Admin Dashbaord</a>
             <button type="button" class="button-close fa fa-times js__menu_close"></button>
             <div class="user">
-                <a href="#" class="avatar"><img src="{{asset('assets/images/logo/logo-1.png')}}" alt=""><span
+                <a href="#" class="avatar"><img
+                        src="{{ asset('assets/images/logo/logo-1.png') }}" alt=""><span
                         class="status online"></span></a>
                 <h5 class="name"><a href="profile.html">Admin</a></h5>
                 <h5 class="position">Administrator</h5>
@@ -99,14 +102,17 @@
                                 class="menu-icon mdi mdi-desktop-mac"></i><span>Master Data</span><span
                                 class="menu-arrow fa fa-angle-down"></span></a>
                         <ul class="sub-menu js__content">
-                            <li><a href="{{route('admin.products.index')}}"><i
+                            <li><a href="{{ route('admin.products.index') }}"><i
                                         class="ico mdi mdi-cube-outline mr-2"></i>
                                     Produk</a></li>
-                            <li><a href="{{route('admin.branches.index')}}"><i class="fas fa-code-branch mr-2"></i>
+                            <li><a href="{{ route('admin.branches.index') }}"><i
+                                        class="fas fa-code-branch mr-2"></i>
                                     Branch</a></li>
-                            <li><a href="{{route('admin.stores.index')}}"><i class="far fa-building mr-2"></i>
+                            <li><a href="{{ route('admin.stores.index') }}"><i
+                                        class="far fa-building mr-2"></i>
                                     Toko</a></li>
-                            <li><a href="{{ route('admin.users.index') }}"><i class="far fa-user mr-2"></i>
+                            <li><a href="{{ route('admin.users.index') }}"><i
+                                        class="far fa-user mr-2"></i>
                                     Users</a></li>
                         </ul>
                     </li>
@@ -116,13 +122,16 @@
                                 class="menu-icon far fa-list-alt"></i><span>Transaksi</span><span
                                 class="menu-arrow fa fa-angle-down"></span></a>
                         <ul class="sub-menu js__content">
-                            <li><a href="{{ route('admin.transactions.index', ['type' => 'penarikan']) }}"><i
+                            <li><a
+                                    href="{{ route('admin.transactions.index', ['type' => 'penarikan']) }}"><i
                                         class="far fa-arrow-alt-circle-left mr-2"></i>
                                     Penarikan</a></li>
 
-                            <li><a href="{{ route('admin.transactions.index', ['type' => 'pemasangan']) }}"><i
+                            <li><a
+                                    href="{{ route('admin.transactions.index', ['type' => 'pemasangan']) }}"><i
                                         class="far fa-arrow-alt-circle-right mr-2"></i>
                                     Pemasangan</a></li>
+
                         </ul>
                     </li>
                     <li>
@@ -130,10 +139,15 @@
                                 class="menu-icon fas fa-print"></i><span>Laporan</span><span
                                 class="menu-arrow fa fa-angle-down"></span></a>
                         <ul class="sub-menu js__content">
-                            <li><a href="{{ route('admin.reports.stock', ['type' => 'terpasang']) }}"><i class="fa fa-print mr-2"></i>
+                            <li><a href="{{ route('admin.reports.stock', ['type' => 'terpasang']) }}"><i
+                                        class="fa fa-print mr-2"></i>
                                     Stock Terpasang</a></li>
-                            <li><a href="{{ route('admin.reports.stock', ['type' => 'repair']) }}"><i class="fa fa-print mr-2"></i>
+                            <li><a href="{{ route('admin.reports.stock', ['type' => 'repair']) }}"><i
+                                        class="fa fa-print mr-2"></i>
                                     Stock Repair</a></li>
+                            <li><a href="{{ route('admin.reports.stock', ['type' => 'bk']) }}"><i
+                                        class="fa fa-print mr-2"></i>
+                                    Stock Gudang BK</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -174,36 +188,48 @@
     <!--/#wrapper -->
 
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{{asset('assets/scripts/jquery.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset('assets/scripts/modernizr.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset('assets/plugin/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset('assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js')}}"
+    <script src="{{ asset('assets/scripts/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/scripts/modernizr.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugin/bootstrap/js/bootstrap.min.js') }}"
         type="text/javascript"></script>
-    <script src="{{asset('assets/plugin/nprogress/nprogress.js')}}" type="text/javascript"></script>
-    <script src="{{asset('assets/plugin/sweet-alert/sweetalert.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset('assets/plugin/waves/waves.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset('assets/scripts/main.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset('assets/scripts/mycommon.js')}}" type="text/javascript"></script>
+    <script
+        src="{{ asset('assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js') }}"
+        type="text/javascript"></script>
+    <script src="{{ asset('assets/plugin/nprogress/nprogress.js') }}" type="text/javascript">
+    </script>
+    <script src="{{ asset('assets/plugin/sweet-alert/sweetalert.min.js') }}"
+        type="text/javascript"></script>
+    <script src="{{ asset('assets/plugin/waves/waves.min.js') }}" type="text/javascript">
+    </script>
+    <script src="{{ asset('assets/scripts/main.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/scripts/mycommon.js') }}" type="text/javascript"></script>
 
 
     <!-- Sweet Alert -->
-    <script src="{{ asset('assets/plugin/sweet-alert/sweetalert.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugin/sweet-alert/sweetalert.min.js') }}"
+        type="text/javascript"></script>
     <!-- Sweet Alert -->
 
     <!-- Data Tables -->
-    <script src="{{asset('assets/plugin/datatables/media/js/jquery.dataTables.min.js')}}" type="text/javascript">
+    <script src="{{ asset('assets/plugin/datatables/media/js/jquery.dataTables.min.js') }}"
+        type="text/javascript">
     </script>
-    <script src="{{asset('assets/plugin/datatables/media/js/dataTables.bootstrap4.min.js')}}" type="text/javascript">
+    <script
+        src="{{ asset('assets/plugin/datatables/media/js/dataTables.bootstrap4.min.js') }}"
+        type="text/javascript">
     </script>
-    <script src="{{asset('assets/plugin/datatables/extensions/Responsive/js/dataTables.responsive.min.js')}}"
+    <script
+        src="{{ asset('assets/plugin/datatables/extensions/Responsive/js/dataTables.responsive.min.js') }}"
         type="text/javascript"></script>
-    <script src="{{asset('assets/plugin/datatables/extensions/Responsive/js/responsive.bootstrap.min.js')}}"
+    <script
+        src="{{ asset('assets/plugin/datatables/extensions/Responsive/js/responsive.bootstrap.min.js') }}"
         type="text/javascript"></script>
     <!-- Data Tables -->
 
 
     <!-- Select2 -->
-    <script src="{{ asset('assets/plugin/select2/js/select2.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugin/select2/js/select2.min.js') }}"
+        type="text/javascript"></script>
     <!-- Select2 -->
 
     <script>
@@ -283,7 +309,6 @@
         $('.format-rupiah').on('keyup', function () {
             $(this).val(formatRupiah(this.value));
         });
-
     </script>
     @stack('js-custome')
 </body>

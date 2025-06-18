@@ -21,7 +21,7 @@
 
                 <div class="table-responsive">
                     <table class="table table-striped dataTable">
-                        <thead class="table-secondary text-black">
+                        <thead class="table-dark">
                             <tr>
                                 <th width="5%" class="text-center">No</th>
                                 <th>Branch - Toko</th>
