@@ -50,7 +50,7 @@ class ReportController extends Controller
             $page = 'admin.reports.transaction_penarikan';
         }
 
-        if ($type == "repair") {
+        if ($type == "pemasangan") {
             $page = 'admin.reports.transaction_pemasangan';
         }
 

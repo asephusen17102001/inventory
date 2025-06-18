@@ -1,5 +1,5 @@
 @extends('admin.layout')
-@section('title', 'Laporan Transaksi Penarikan')
+@section('title', 'Laporan Transaksi Pemasangan')
 
 @push('css-custome')
     <style>
@@ -28,7 +28,7 @@
     <div class="row small-spacing justify-content-center">
         <div class="col-12">
             <div class="box-content bordered-all" style="padding: 2% !important;">
-                <h4 class="box-title"><i class="fa fa-print"></i> Data Laporan Transaksi Penarikan</h4>
+                <h4 class="box-title"><i class="fa fa-print"></i> Data Laporan Transaksi Pemasangan</h4>
                 <form action="" method="get" id="form-filter">
                     <div class="row">
                         <div class="col-3">
@@ -79,7 +79,7 @@
                                     {{ $transaction->getTanggalRansactionAttribute($transaction->tanggal_transaction) }}
                                 </td>
                                 <td style="border-top: 1px solid black !important;">
-                                    <a href="{{ route('admin.transactions.show', ['type' => 'penarikan', 'transaction' => $transaction]) }}"  target="__blank">{{ $transaction->nomor_transaction }}</a>
+                                    <a href="{{ route('admin.transactions.show', ['type' => 'pemasangan', 'transaction' => $transaction]) }}"  target="__blank">{{ $transaction->nomor_transaction }}</a>
                                 </td>
                                 <td style="border-top: 1px solid black !important;">
                                     {{ $transaction->store->branch->name }} - 
@@ -127,8 +127,8 @@
                 language: {
                     search: "Cari &nbsp;:&nbsp;",
                     zeroRecords: "Data Transaksi tidak ditemukan",
-                    info: "Total <b>_TOTAL_</b> Data <b>Transaksi Penarikan</b> Tanggal : {{ date('d-m-Y', strtotime(request('f_tanggal_start'))) }} S/d. {{ date('d-m-Y', strtotime(request('f_tanggal_end'))) }}",
-                    infoEmpty: "Tidak ada data <b>Transaksi Penarikan</b> tersedia",
+                    info: "Total <b>_TOTAL_</b> Data <b>Transaksi Pemasangan</b> Tanggal : {{ date('d-m-Y', strtotime(request('f_tanggal_start'))) }} S/d. {{ date('d-m-Y', strtotime(request('f_tanggal_end'))) }}",
+                    infoEmpty: "Tidak ada data <b>Transaksi Pemasangan</b> tersedia",
                 }
             });
         });

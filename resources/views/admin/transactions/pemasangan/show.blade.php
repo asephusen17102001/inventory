@@ -82,10 +82,10 @@
                             <td>
                                 Item Product
                             </td>
-                            <td class="text-center">
+                            <td class="text-right">
                                 Price Recond..
                             </td>
-                            <td class="text-center">
+                            <td class="text-right">
                                 Qty
                             </td>
                             <td class="text-center">Sub. Total</td>
@@ -97,13 +97,13 @@
                                 # {{ $detail->product->name }}
                             </td>
                             <td>
-                                Rp. {{ number_format($detail->product->price_recondition, 0, ',', '.') }}
+                                {{ number_format($detail->product->price_recondition, 0, ',', '.') }}
                             </td>
                             <td class="text-right">
                                 x &nbsp; {{ $detail->qty }}
                             </td>
                             <td class="text-right">
-                                Rp.
+                               
                                 {{ number_format($detail->product->price_recondition * $detail->qty, 0, ',', '.') }}
                             </td>
                         </tr>
@@ -121,7 +121,7 @@
                                 });
                                 @endphp
 
-                                Rp. {{ number_format($total_price_recondition, 0,',','.') }}
+                                {{ number_format($total_price_recondition, 0,',','.') }}
                                 &nbsp;
                             </th>
                         </tr>
@@ -134,10 +134,10 @@
                             <td>
                                 Item Product
                             </td>
-                            <td class="text-center">
+                            <td class="text-right">
                                 Price [ New ]
                             </td>
-                            <td class="text-center">
+                            <td class="text-right">
                                 Qty
                             </td>
                             <td class="text-center">Sub. Total</td>
@@ -149,13 +149,13 @@
                                 # {{ $detail->product->name }}
                             </td>
                             <td>
-                                Rp. {{ number_format($detail->product->price, 0, ',', '.') }}
+                                {{ number_format($detail->product->price, 0, ',', '.') }}
                             </td>
                             <td class="text-right">
                                 x &nbsp; {{ $detail->qty }}
                             </td>
                             <td class="text-right">
-                                Rp.
+                               
                                 {{ number_format($detail->product->price * $detail->qty, 0, ',', '.') }}
                             </td>
                         </tr>
@@ -171,7 +171,7 @@
                                 });
                                 @endphp
 
-                                Rp. {{ number_format($total_price, 0,',','.') }}
+                                {{ number_format($total_price, 0,',','.') }}
                                 &nbsp;
                             </th>
                         </tr>
