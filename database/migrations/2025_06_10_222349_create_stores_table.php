@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
             $table->integer('branch_id')->unsigned();
-            $table->string('name')->nullable();
-            $table->text('address');
-            $table->string('ppic');
-            $table->string('contact');
+            $table->string('name');
+            $table->text('address')->nullable();
+            $table->string('name_pic')->nullable();
+            $table->string('contact')->nullable();
             $table->string('status')->nullable()->default('active');
             $table->softDeletes();
             $table->timestamps();

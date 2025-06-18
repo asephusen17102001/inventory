@@ -26,7 +26,7 @@
                                 <th width="5%" class="text-center">No</th>
                                 <th>Branch - Toko</th>
                                 <th>Alamat</th>
-                                <th>PPIC - Contact</th>
+                                <th>name_pic - Contact</th>
                                 <th class="text-center">Status</th>
                                 <th class="text-center">Action</th>
                             </tr>
@@ -37,7 +37,7 @@
                                 <td class="text-center">{{ ($index+1) }}.</td>
                                 <td>{{ ucwords($store->branch->name.' - '.$store->name) }}</td>
                                 <td>{{ ucwords($store->address) }}</td>
-                                <td>{{ ucwords($store->ppic.' - '.$store->contact) }}</td>
+                                <td>{{ ucwords($store->name_pic.' - '.$store->contact) }}</td>
                                 <td
                                     class="text-center {{ $store->status == "active" ? 'text-success' : 'text-danger' }}">
                                     {{ ucwords($store->status) }}

@@ -61,6 +61,16 @@ class StoreController extends Controller
     public function show(Store $store)
     {
         $store->load('storeProducts');
+        $store->load('Transactions');
+        $store->transactions->load('detailProductTransactions.product');
+        $store->detailProductTransactions = $store->transactions->flatMap(function ($transaction) {
+            return $transaction->detailProductTransactions->load('product');
+        })->sortBy('tanggal_transaction')->unique('id');
+
+
+        // kode di atas error Method Illuminate\Support\Collection::load does not exist.
+
+
         //
         $selectedProductIds = StoreProduct::where('store_id', $store->id)->pluck('product_id');
 

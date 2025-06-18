@@ -15,6 +15,10 @@ return new class extends Migration {
             $table->string('name')->unique();
             $table->string('status')->nullable()->default('active');
             $table->integer('stock')->default(0);
+            $table->integer('stock_recondition')->default(0);
+            $table->bigInteger('price')->default(0);
+            $table->bigInteger('price_recondition')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

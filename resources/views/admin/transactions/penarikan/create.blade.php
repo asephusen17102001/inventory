@@ -81,7 +81,7 @@
                             <div class="mb-3">
                                 <span class="text-muted">PIC</span>
                                 <br>
-                                <b id="info-ppic"></b>
+                                <b id="info-name_pic"></b>
                             </div>
 
                             <div class="mb-3">
@@ -106,17 +106,8 @@
 
 
                             <table class="table mt-5">
-                                <tbody>
-                                    @foreach ($products as $index => $product)
-                                    <input type="hidden" name="product_id[{{ $index }}]" value="{{ $product->id }}" />
-                                    <tr>
-                                        <td># {{ $product->name }}</td>
-                                        <td width="20%"><input type="text"
-                                                class="form-control text-center format-rupiah" value="0"
-                                                name="qty[{{ $index }}]" placeholder="Qty" required /></td>
-                                        </td>
-                                    </tr>
-                                    @endforeach
+                                <tbody id="tbody-product">
+                                   
                                 </tbody>
                             </table>
 
@@ -150,6 +141,7 @@
         $('#store_id').on('change', function () {
 
             let store_id = $(this).val();
+            
             if (store_id) {
                 $.ajax({
                     url: "{{ route('admin.stores.ajax_get_store') }}",
@@ -158,10 +150,34 @@
                     },
                     type: 'GET',
                     success: function (response) {
+                        console.log(response.store_products);
                         $('#info-name').text(response.name);
                         $('#info-address').text(response.address);
-                        $('#info-ppic').text(response.ppic);
+                        $('#info-name_pic').text(response.name_pic);
                         $('#info-contact').text(response.contact);
+
+                        $('#tbody-product').empty();
+
+                        $.each(response.store_products, function (index, store_product) {
+                            let __CONTENT_TABLE_PRODUCTS = `
+
+                                <tr>
+                                    <td>
+                                        <input type="hidden" name="product_id[${index}]"
+                                            value="${store_product.product.id}" />
+                                        <p class="mb-1">
+                                            # ${store_product.product.name}
+                                        </p>
+                                        <small class="pl-3">Stock di toko : &nbsp;${store_product.stock} </small>
+                                    </td>
+                                    <td width="20%"><input type="number"
+                                            class="form-control text-center format-rupiah" value="0"
+                                            name="qty[${index}]" placeholder="Qty" max="${store_product.stock}" min="0" required /></td>
+                                    </td>
+                                </tr>
+                            `;
+                            $('#tbody-product').append(__CONTENT_TABLE_PRODUCTS);
+                        });
 
                         $('.content-form').show();
                     },
@@ -173,7 +189,7 @@
             } else {
                 $('#info-name').text('');
                 $('#info-address').text('');
-                $('#info-ppic').text('');
+                $('#info-name_pic').text('');
                 $('#info-contact').text('');
                 $('.content-form').hide();
             }

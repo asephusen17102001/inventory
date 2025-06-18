@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Branch;
 use App\Models\User;
 
 class UserController extends Controller
@@ -24,8 +25,9 @@ class UserController extends Controller
      */
     public function create()
     {
+        $branches = Branch::orderBy(column: 'name')->get();
         //
-        return view('admin.users.create');
+        return view('admin.users.create', compact('branches'));
     }
 
     /**
@@ -60,7 +62,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //
-        return view('admin.users.edit', compact('user'));
+        $branches = Branch::orderBy(column: 'name')->get();
+        return view('admin.users.edit', compact('user', 'branches'));
     }
 
     /**

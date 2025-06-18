@@ -101,15 +101,15 @@
 
                     <br><br><br>
 
-                    <div class="row form-group {{ $errors->has('ppic') ? 'has-error' : '' }}">
+                    <div class="row form-group {{ $errors->has('name_pic') ? 'has-error' : '' }}">
                         <div class="col-3 pt-2">
-                            <label for="ppic">Nama PIC</label>
+                            <label for="name_pic">Nama PIC</label>
                         </div>
                         <div class="col-9">
-                            <input type="text" name="ppic" class="form-control" id="ppic" placeholder="Nama PIC ..."
-                                value="{{ old('ppic') ?? $store->ppic }}" required>
+                            <input type="text" name="name_pic" class="form-control" id="name_pic" placeholder="Nama PIC ..."
+                                value="{{ old('name_pic') ?? $store->name_pic }}" required>
 
-                            @error('ppic')
+                            @error('name_pic')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>

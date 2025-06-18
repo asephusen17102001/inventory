@@ -10,6 +10,7 @@ use App\Models\DetailProductTransaction;
 use App\Models\Product;
 use App\Models\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {
@@ -58,6 +59,7 @@ class TransactionController extends Controller
      */
     public function store(Request $request, $type)
     {
+        DB::beginTransaction();
         //
         try {
 
@@ -68,29 +70,61 @@ class TransactionController extends Controller
                 'type' => $type,
             ]);
 
-            foreach ($request->input('product_id') as $key => $value) {
-                $data['product_id'] = $value;
-                $data['qty'] = str_replace('.', '', $request->input('qty')[$key]);
+            foreach ($request->input('product_id') as $index => $value) {
+
+                $qty = str_replace('.', '', $request->input('qty')[$index]);
+                $type_product = $request->input('type')[$index];
+                $price = $request->input('price')[$index];
+
+                if (empty($qty) || $qty < 1) continue;
 
                 DetailProductTransaction::create([
                     'transaction_id' => $transaction->id,
-                    'product_id' => $data['product_id'],
-                    'qty' => $data['qty'],
+                    'product_id' => $value,
+                    'qty' => $qty,
+                    'type' => $type_product,
+                    'price' => $price,
                 ]);
 
-                // Update product stock
-                $product = Product::find($data['product_id']);
+
+                // Update product stock BK
+                $product = Product::find($value);
+                $store_product = $product->storeProducts()->where('store_id', $transaction->store_id)->first();
                 if ($type == 'penarikan') {
-                    $product->stock += $data['qty'];
+                    // update stock di BK
+                    $product->stock_recondition += $qty;
+
+                    // update stock produk di toko
+                    $store_product->stock -= $qty;
+                    $store_product->stock_product_repair += $qty;
                 } else {
-                    $product->stock -= $data['qty'];
+                    // update stock di Gudang BK
+
+                    if ($type_product == 'baru') {
+                        $product->stock -= $qty;
+                    } else {
+                        // jika produk bekas, kurangi stock recondition
+                        $product->stock_recondition -= $qty;
+                    }
+
+                    // update stock produk di toko
+                    $store_product->stock += $qty;
+                    $store_product->stock_product_repair -= $qty;
                 }
+
+                // save produk di BK
                 $product->save();
+
+                // save produk di toko
+                $store_product->save();
+
+                DB::commit();
             }
 
             return redirect()->route('admin.transactions.index', ['type' => $type])
                 ->with('success', 'Transaction ' . ucwords($type));
         } catch (\Throwable $th) {
+            DB::rollBack();
             return back()->with('failed', $th->getMessage())->withInput();
         }
     }

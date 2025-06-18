@@ -71,7 +71,7 @@
                                             <div class="mb-3">
                                                 <span class="text-muted">PIC</span>
                                                 <br>
-                                                <b>{{ $store->ppic }}</b>    
+                                                <b>{{ $store->name_pic }}</b>    
                                             </div>
                                             <div class="mb-3">
                                                 <span class="text-muted">Kontak Hub.</span>
@@ -105,8 +105,8 @@
                                             @foreach ($store->storeProducts->all() as $store_product)
                                                 <tr>
                                                     <td># {{ $store_product->product->name }}</td>
-                                                    <td class="text-center">{{ $store_product->stock }}</td>
-                                                    <td class="text-center text-danger">{{ $store_product->stock_product_repair != 0 ? $store_product->stock_product_repair : '' }}</td>
+                                                    <td class="text-center text-success">{{ $store_product->stock }}</td>
+                                                    <td class="text-center text-danger">{{ $store_product->stock_product_repair != 0 ? $store_product->stock_product_repair : 0 }}</td>
                                                     <td class="text-center">
                                                         <button type="button" class="btn btn-xs btn-danger btn-delete"
                                                         onclick="confirm_delete(`{{ route('admin.stores.delete_store_product', $store_product->id) }}`)"><i class="fa fa-trash"></i></button>        
@@ -126,10 +126,10 @@
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <input type="number" name="stock" class="form-control text-center" placeholder="Terpasang.." required>
+                                                    <input type="number" name="stock" class="form-control text-center" style="width: 100%;" placeholder="Terpasang.." required>
                                                 </td>
                                                 <td>
-                                                    <input type="number" name="stock_product_repair" class="form-control text-center" value="0" placeholder="Repair.." required>
+                                                    <input type="number" name="stock_product_repair" class="form-control text-center" style="width: 100%;" placeholder="Repair.." required>
                                                 </td>
                                                 <td class="text-center">
                                                     <button type="submit" class="btn btn-primary btn-xs"><i class="fa fa-paper-plane"></i></button>
@@ -140,8 +140,30 @@
                                 </form>
                                 </div>
                                 <div id="tabs-3">
-                                    <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
-                                    <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+                                   <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th width="10%">Tanggal</th>
+                                            <th width="15%">Nomor Transaction</th>
+                                            <th>Methode</th>
+                                            <th>Produk</th>
+                                            <th class="text-center">Qty</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($store->detailProductTransactions as $detail)
+                                        @if (@$detail->product && @$detail->qty > 0)    
+                                        <tr>
+                                            <td>{{ date('d M Y H:i', strtotime($detail->created_at)) }}</td>
+                                            <td>{{ $detail->transaction->nomor_transaction }}</td>
+                                            <td class="{{ $detail->transaction->type == "penarikan" ? 'text-info' : 'text-success' }}">{{ $detail->transaction->type == "penarikan" ? 'Penarikan' : 'Pemasangan' }}</td>
+                                            <td>{{ $detail->product->name }}</td>
+                                            <td class="text-right">{{ $detail->qty }}</td>
+                                        </tr>
+                                        @endif
+                                        @endforeach
+                                    </tbody>
+                                   </table>
                                 </div>
                             </div>
                         </div>

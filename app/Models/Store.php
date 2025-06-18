@@ -16,7 +16,7 @@ class Store extends Model
         'branch_id',
         'name',
         'address',
-        'ppic',
+        'name_pic',
         'contact',
         'status'
     ];
@@ -31,5 +31,10 @@ class Store extends Model
     public function storeProducts()
     {
         return $this->hasMany(StoreProduct::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
     }
 }

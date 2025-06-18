@@ -25,6 +25,7 @@ class StoreUserRequest extends FormRequest
         $id = $this->route('users') ? $this->route('users')->id : null;
 
         return [
+            'branch_id' => 'nullable|integer',
             'name' => 'required',
             'email' => [
                 'required',

@@ -1,6 +1,26 @@
 @extends('admin.layout')
 @section('title', 'Add User')
 
+
+
+@push('css-custome')
+<style>
+
+    .select2-selection__rendered {
+        line-height: 45px !important;
+    }
+
+    .select2-container .select2-selection--single {
+        height: 45px !important;
+    }
+
+    .select2-selection__arrow {
+        height: 45px !important;
+    }
+
+</style>
+@endpush
+
 @section('content')
 <div class="main-content">
     <div class="row small-spacing justify-content-center">
@@ -20,6 +40,25 @@
                 <hr>
                 <form action="{{ route('admin.users.store') }}" method="post">
                     @csrf
+
+                    <div class="row form-group mb-5">
+                        <div class="col-3 pt-2">
+                            <label for="name">Branch <sup class="text-danger">*</sup></label>
+                        </div>
+                        <div class="col-9">
+                            <select name="branch_id" id="branch_id" class="form-control select2" required>
+                                <option value=""></option>
+                                @foreach ($branches as $branch)
+                                <option value="{{ $branch->id }}">{{ $branch->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('branch_id')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
+
                     <div class="row form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                         <div class="col-3 pt-2">
                             <label for="name">Nama User <sup class="text-danger">*</sup></label>
@@ -49,13 +88,14 @@
                     </div>
 
 
-                    <div class="row form-group">
+                    <div class="row form-group" style="display: none;">
                         <div class="col-3 pt-2">
                             <label for="name">Role Akses <sup class="text-danger">*</sup></label>
                         </div>
                         <div class="col-9">
                             <select name="role" id="role" class="form-control select2" required>
                                 <option value="">-- Pilih Role --</option>
+                                <option value="branch" selected>Branch</option>
                                 <option value="admin">Admin</option>
                             </select>
                             @error('role')
@@ -108,3 +148,15 @@
     </div>
 </div>
 @endsection
+
+
+@push('js-custome')
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.select2').select2({
+            placeholder: "-- Pilih Branch --",
+        });
+    });
+
+</script>
+@endpush

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -13,9 +14,9 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('tanggal_transaction')->nullable()->default(now());
+            $table->dateTime('tanggal_transaction')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->integer('store_id')->unsigned();
-            $table->string('nomor_transaction')->nullable();
+            $table->string('nomor_transaction');
             $table->enum('type', ['penarikan', 'pemasangan'])->default('penarikan');
             $table->softDeletes();
             $table->timestamps();

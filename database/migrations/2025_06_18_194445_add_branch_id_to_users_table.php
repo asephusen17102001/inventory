@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
-            $table->softDeletes();
+            $table->integer('branch_id')->nullable()->after('id');
         });
     }
 
@@ -22,10 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('products', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
-            $table->dropSoftDeletes();
-            $table->dropColumn('deleted_at');
+            $table->dropColumn('branch_id');
         });
     }
 };

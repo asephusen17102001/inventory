@@ -81,7 +81,7 @@
                             <div class="mb-3">
                                 <span class="text-muted">PIC</span>
                                 <br>
-                                <b id="info-ppic"></b>
+                                <b id="info-name_pic"></b>
                             </div>
 
                             <div class="mb-3">
@@ -106,9 +106,21 @@
 
 
                             <table class="table mt-5">
-                                <tbody>
-                                    @foreach ($products as $index => $product)
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th colspan="3">Product Repair</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-product">
+                                    @php
+                                        $index = 0;
+                                    @endphp
+                                    @foreach ($products as $product)
+                                   
                                     <input type="hidden" name="product_id[{{ $index }}]" value="{{ $product->id }}" />
+                                    <input type="hidden" name="type[{{ $index }}]"
+                                        value="repair" />
+                                        <input type="hidden" name="price[{{ $index }}]" value="{{ $product->price_recondition }}" />
                                     <tr>
                                         <td># {{ $product->name }}</td>
                                         <td class="text-right">
@@ -116,6 +128,40 @@
                                         <td width="20%"><input type="text"
                                                 class="form-control text-center format-rupiah" value="0"
                                                 name="qty[{{ $index }}]" placeholder="Qty" required /></td>
+                                        </td>
+                                    </tr>
+
+                                        @php
+                                            $index++;
+                                        @endphp
+                                    @endforeach
+                                </tbody>
+                            </table>
+
+
+                            <table class="table">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th colspan="3">Product Baru</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-product">
+                                    @foreach ($products as $index => $product)
+                                    <input type="hidden" name="product_id[{{ $index }}]" value="{{ $product->id }}" />
+                                    <input type="hidden" name="type[{{ $index }}]"
+                                        value="baru" />
+                                        <input type="hidden" name="price[{{ $index }}]" value="{{ $product->price}}" />
+                                    <tr>
+                                        <td># {{ $product->name }}
+                                            <p>
+                                                <small class="pl-3">Stock Tersedia : &nbsp;{{ $product->stock }} </small>
+                                            </p>
+                                        </td>
+                                        <td class="text-right">
+                                            Rp. {{ number_format($product->price, 0, ',', '.') }}</td>
+                                        <td width="20%"><input type="text"
+                                                class="form-control text-center format-rupiah" value="0"
+                                                name="qty[{{ $index }}]" placeholder="Qty" max="{{ $product->stock }}" required /></td>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -162,7 +208,7 @@
                     success: function (response) {
                         $('#info-name').text(response.name);
                         $('#info-address').text(response.address);
-                        $('#info-ppic').text(response.ppic);
+                        $('#info-name_pic').text(response.name_pic);
                         $('#info-contact').text(response.contact);
 
                         $('.content-form').show();
@@ -175,7 +221,7 @@
             } else {
                 $('#info-name').text('');
                 $('#info-address').text('');
-                $('#info-ppic').text('');
+                $('#info-name_pic').text('');
                 $('#info-contact').text('');
                 $('.content-form').hide();
             }

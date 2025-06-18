@@ -41,7 +41,7 @@
                                             <td>
                                                 {{ ucwords($transaction->store->name) }}<br>
                                                 {{ $transaction->store->address }}<br>
-                                                {{ ucwords($transaction->store->ppic) }},
+                                                {{ ucwords($transaction->store->name_pic) }},
                                                 {{ $transaction->store->contact }}
                                             </td>
 

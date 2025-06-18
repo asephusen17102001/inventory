@@ -48,7 +48,7 @@
                                             <td>
                                                 {{ ucwords($transaction->store->name) }}<br>
                                                 {{ $transaction->store->address }}<br>
-                                                {{ ucwords($transaction->store->ppic) }},
+                                                {{ ucwords($transaction->store->name_pic) }},
                                                 {{ $transaction->store->contact }}
                                             </td>
 
@@ -91,7 +91,7 @@
                             <td class="text-center">Sub. Total</td>
                         </tr>
 
-                        @foreach ($transaction->detailProductTransactions->where('qty', '>', 0) as $detail)
+                        @foreach ($transaction->detailProductTransactions->where('type', 'repair') as $detail)
                         <tr class="item">
                             <td>
                                 # {{ $detail->product->name }}
@@ -116,7 +116,7 @@
                             <th class="text-right" colspan="2">
                                 @php
                                 $total_price_recondition =
-                                $transaction->detailProductTransactions->sum(function($detail){
+                                $transaction->detailProductTransactions->where('type', 'repair')->sum(function($detail){
                                 return ($detail->qty * $detail->product->price_recondition);
                                 });
                                 @endphp
@@ -143,7 +143,7 @@
                             <td class="text-center">Sub. Total</td>
                         </tr>
 
-                        @foreach ($transaction->detailProductTransactions->where('qty', '>', 0) as $detail)
+                        @foreach ($transaction->detailProductTransactions->where('type', 'baru') as $detail)
                         <tr class="item">
                             <td>
                                 # {{ $detail->product->name }}
@@ -166,7 +166,7 @@
                             </td>
                             <th class="text-right" colspan="2">
                                 @php
-                                $total_price = $transaction->detailProductTransactions->sum(function($detail){
+                                $total_price = $transaction->detailProductTransactions->where('type', 'baru')->sum(function($detail){
                                 return ($detail->qty * $detail->product->price);
                                 });
                                 @endphp

@@ -12,12 +12,16 @@ class DetailProductTransaction extends Model
         'transaction_id',
         'product_id',
         'qty',
+        'type',
+        'price',
     ];
 
     protected $casts = [
         'transaction_id' => 'integer',
         'product_id' => 'integer',
         'qty' => 'integer',
+        'type' => 'string',
+        'price' => 'integer',
     ];
 
     public function transaction()

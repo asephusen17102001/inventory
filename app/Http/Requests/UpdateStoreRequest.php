@@ -27,7 +27,7 @@ class UpdateStoreRequest extends FormRequest
             'name' => 'required|string',
             'status' => 'required',
             'address' => 'string',
-            'ppic' => 'string',
+            'name_pic' => 'string',
             'contact' => 'string'
         ];
     }

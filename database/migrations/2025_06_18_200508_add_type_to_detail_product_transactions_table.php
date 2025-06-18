@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('detail_product_transactions', function (Blueprint $table) {
             //
-            if (!Schema::hasColumn('users', 'deleted_at')) {
-                $table->softDeletes();
-            }
+            $table->string('type')->nullable()->default('repair')->after('qty');
+            $table->biginteger('price')->nullable()->after('type');
         });
     }
 
@@ -24,10 +23,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('detail_product_transactions', function (Blueprint $table) {
             //
-            $table->dropSoftDeletes();
-            $table->dropColumn('deleted_at');
+            $table->dropColumn('type');
+            $table->dropColumn('price');
         });
     }
 };
