@@ -117,7 +117,7 @@
                                 class="menu-arrow fa fa-angle-down"></span></a>
                         <ul class="sub-menu js__content">
                             <li><a href="{{ route('admin.transactions.index', ['type' => 'penarikan']) }}"><i
-                                        class="far fa-arrow-alt-circle-right mr-2"></i>
+                                        class="far fa-arrow-alt-circle-left mr-2"></i>
                                     Penarikan</a></li>
 
                             <li><a href="{{ route('admin.transactions.index', ['type' => 'pemasangan']) }}"><i
@@ -130,10 +130,10 @@
                                 class="menu-icon fas fa-print"></i><span>Laporan</span><span
                                 class="menu-arrow fa fa-angle-down"></span></a>
                         <ul class="sub-menu js__content">
-                            <li><a href="#"><i class="far fa-arrow-alt-circle-right mr-2"></i>
-                                    Barang In</a></li>
-                            <li><a href="#"><i class="far fa-arrow-alt-circle-left mr-2"></i>
-                                    Barang Out</a></li>
+                            <li><a href="{{ route('admin.reports.stock', ['type' => 'terpasang']) }}"><i class="fa fa-print mr-2"></i>
+                                    Stock Terpasang</a></li>
+                            <li><a href="{{ route('admin.reports.stock', ['type' => 'repair']) }}"><i class="fa fa-print mr-2"></i>
+                                    Stock Repair</a></li>
                         </ul>
                     </li>
                 </ul>

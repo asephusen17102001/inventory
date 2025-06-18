@@ -22,7 +22,7 @@
 <div class="main-content">
     <div class="row small-spacing justify-content-center">
         <div class="col-12">
-            <div class="box-content bordered" style="padding: 2% !important;">
+            <div class="box-content bordered-all" style="padding: 2% !important;">
                 <h4 class="box-title"><i class="far fa-folder-open"></i> Data Product</h4>
                 <!-- /.box-title -->
                 <div class="dropdown js__drop_down">

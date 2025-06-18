@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\UserController;
@@ -35,9 +36,13 @@ Route::prefix('admin')->as('admin.')->group(function () {
     // User
     Route::resource('users', UserController::class)->names('users');
 
-    // transaction penarikan and pemasangan
+    // Transaction : penarikan and pemasangan
     Route::get('transactions/{type}', [TransactionController::class, 'index'])->name('transactions.index');
     Route::post('transactions/store/{type}', [TransactionController::class, 'store'])->name('transactions.store');
     Route::get('transactions/create/{type}', [TransactionController::class, 'create'])->name('transactions.create');
     Route::get('transactions/show/{type}/{transaction}', [TransactionController::class, 'show'])->name('transactions.show');
+
+
+    // Report
+    Route::get('reports/stock/{type}', [ReportController::class, 'index'])->name('reports.stock');
 });

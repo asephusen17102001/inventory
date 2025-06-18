@@ -31,7 +31,7 @@
             <form action="{{ route('admin.transactions.store', ['type' => 'pemasangan']) }}" method="post">
                 @csrf
 
-                <div class="box-content bordered" style="padding: 20px !important;">
+                <div class="box-content bordered-all" style="padding: 20px !important;">
                     <h4 class="box-title"><i class="fa fa-plus"></i> Form Add Product Pemasangan</h4>
                     <!-- /.box-title -->
                     <div class="dropdown js__drop_down">
@@ -65,7 +65,7 @@
                 <div class="row content-form" style="display: none;">
 
                     <div class="col-4">
-                        <div class="box-content bordered" style="padding: 20px !important;">
+                        <div class="box-content bordered-all" style="padding: 20px !important;">
                             <div class="mb-3">
                                 <span class="text-muted">Nama Toko</span>
                                 <br>
@@ -92,7 +92,7 @@
                         </div>
                     </div>
                     <div class="col-8">
-                        <div class="box-content bordered" style="padding: 20px !important;">
+                        <div class="box-content bordered-all" style="padding: 20px !important;">
 
                             <div class="input-group margin-bottom-20">
                                 <div class="input-group-btn"><label for="ig-1" class="btn btn-default">Nomor

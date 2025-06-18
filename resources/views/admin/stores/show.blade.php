@@ -39,7 +39,7 @@
         <div class="col-9">
             <div class="row">
                 <div class="col-12">
-                    <div class="box-content bordered" style="padding: 2% !important;">
+                    <div class="box-content bordered-all" style="padding: 2% !important;">
                         <h4 class="box-title"><i class="far fa-folder-open"></i> Detail Toko</h4>
                         <div class="dropdown js__drop_down">
                             <a href="#" class="dropdown-icon fas fa-ellipsis-v js__drop_down_button"></a>
@@ -93,7 +93,7 @@
                                     <form action="{{ route('admin.stores.save_store_product', $store->id) }}" method="post" id="form-store-product">
                                         @csrf
                                     <table class="table table-bordered dataTable">
-                                        <thead>
+                                        <thead class="thead-light">
                                             <tr>
                                                 <th>Nama Produk</th>
                                                 <th class="text-center" width="15%">Stock Terpasang</th>
@@ -141,9 +141,9 @@
                                 </div>
                                 <div id="tabs-3">
                                    <table class="table table-bordered">
-                                    <thead>
+                                    <thead class="thead-light">
                                         <tr>
-                                            <th width="10%">Tanggal</th>
+                                            <th width="15%">Tanggal</th>
                                             <th width="15%">Nomor Transaction</th>
                                             <th>Methode</th>
                                             <th>Produk</th>

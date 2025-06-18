@@ -5,7 +5,7 @@
 <div class="main-content">
     <div class="row small-spacing justify-content-center">
         <div class="col-8">
-            <div class="box-content bordered" style="padding: 3% !important;">
+            <div class="box-content bordered-all" style="padding: 3% !important;">
                 <h4 class="box-title"><i class="fa fa-plus"></i> Form Add Product</h4>
                 <!-- /.box-title -->
                 <div class="dropdown js__drop_down">

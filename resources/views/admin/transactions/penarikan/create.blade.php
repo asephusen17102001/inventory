@@ -31,7 +31,7 @@
             <form action="{{ route('admin.transactions.store', ['type' => 'penarikan']) }}" method="post">
                 @csrf
 
-                <div class="box-content bordered" style="padding: 20px !important;">
+                <div class="box-content bordered-all" style="padding: 20px !important;">
                     <h4 class="box-title"><i class="fa fa-plus"></i> Form Add Product Penarikan</h4>
                     <!-- /.box-title -->
                     <div class="dropdown js__drop_down">
@@ -65,7 +65,7 @@
                 <div class="row content-form" style="display: none;">
 
                     <div class="col-4">
-                        <div class="box-content bordered" style="padding: 20px !important;">
+                        <div class="box-content bordered-all" style="padding: 20px !important;">
                             <div class="mb-3">
                                 <span class="text-muted">Nama Toko</span>
                                 <br>
@@ -92,7 +92,7 @@
                         </div>
                     </div>
                     <div class="col-8">
-                        <div class="box-content bordered" style="padding: 20px !important;">
+                        <div class="box-content bordered-all" style="padding: 20px !important;">
 
                             <div class="input-group margin-bottom-20">
                                 <div class="input-group-btn"><label for="ig-1" class="btn btn-default">Nomor
@@ -165,6 +165,10 @@
                                     <td>
                                         <input type="hidden" name="product_id[${index}]"
                                             value="${store_product.product.id}" />
+                                        <input type="hidden" name="type[${index}]"
+                                            value="repair" />
+                                        <input type="hidden" name="price[${index}]"
+                                            value="${store_product.product.price_recondition}" />
                                         <p class="mb-1">
                                             # ${store_product.product.name}
                                         </p>
