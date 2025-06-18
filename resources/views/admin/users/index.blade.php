@@ -27,6 +27,7 @@
                                 <th>Nama User</th>
                                 <th>Email</th>
                                 <th>Role Akses</th>
+                                <th>Branch</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -37,9 +38,10 @@
                                 <td>{{ ucwords($user->name) }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td><span class="badge badge-info">{{ $user->role }}</span></td>
+                                <td>{{ @$user->branch->name }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('admin.users.edit', $user->id) }}"
-                                        class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                                        class="btn btn-xs btn-primary disabled"><i class="fa fa-edit"></i></a>
                                     <button type="button" class="btn btn-xs btn-danger btn-delete"
                                         onclick="confirm_delete(`{{ route('admin.users.destroy', $user->id) }}`)"><i class="fa fa-trash"></i></button>
                                 </td>

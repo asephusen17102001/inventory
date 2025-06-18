@@ -25,7 +25,8 @@
                             <tr>
                                 <th width="5%" class="text-center">No</th>
                                 <th>Branch</th>
-                                <th>Nama Toko</th>
+                                <th>Toko - PIC</th>
+                                <th class="text-center">Users</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -36,7 +37,12 @@
                                 <td>{{ ucwords($branch->name) }}</td>
                                 <td>
                                     @foreach ($branch->stores as $no_index => $store)
-                                    {{ ($no_index+1) }} . &nbsp; {{ $store->name }}<br>
+                                    {{ ($no_index+1) }} . &nbsp; {{ $store->name }} - {{ $store->name_pic }}<br>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach ($branch->users as $no_index => $user)
+                                    {{ ($no_index+1) }} . &nbsp; {{ $user->name }}<br>
                                     @endforeach
                                 </td>
                                 <td class="text-center">
