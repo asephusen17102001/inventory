@@ -156,7 +156,7 @@
                                         <tr>
                                             <td>{{ date('d M Y H:i', strtotime($detail->created_at)) }}</td>
                                             <td>{{ $detail->transaction->nomor_transaction }}</td>
-                                            <td class="{{ $detail->transaction->type == "penarikan" ? 'text-info' : 'text-success' }}">{{ $detail->transaction->type == "penarikan" ? 'Penarikan' : 'Pemasangan' }}</td>
+                                            <td class="{{ $detail->transaction->type == "penarikan" ? 'text-warning' : 'text-success' }}">{{ $detail->transaction->type == "penarikan" ? 'Penarikan' : 'Pemasangan' }}</td>
                                             <td>{{ $detail->product->name }}</td>
                                             <td class="text-right">{{ $detail->qty }}</td>
                                         </tr>
