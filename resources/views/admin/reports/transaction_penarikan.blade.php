@@ -79,7 +79,7 @@
                                     {{ $transaction->getTanggalRansactionAttribute($transaction->tanggal_transaction) }}
                                 </td>
                                 <td style="border-top: 1px solid black !important;">
-                                    {{ $transaction->nomor_transaction }}
+                                    <a href="{{ route('admin.transactions.show', ['type' => 'penarikan', 'transaction' => $transaction]) }}"  target="__blank">{{ $transaction->nomor_transaction }}</a>
                                 </td>
                                 <td style="border-top: 1px solid black !important;">
                                     {{ $transaction->store->branch->name }} - 
