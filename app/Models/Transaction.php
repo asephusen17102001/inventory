@@ -36,6 +36,6 @@ class Transaction extends Model
 
     public function getTanggalRansactionAttribute($value)
     {
-        return \Carbon\Carbon::parse($value)->format('d M Y  H:i');
+        return \Carbon\Carbon::parse($value)->format('d F Y  H:i');
     }
 }

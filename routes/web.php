@@ -44,5 +44,8 @@ Route::prefix('admin')->as('admin.')->group(function () {
 
 
     // Report
-    Route::get('reports/stock/{type}', [ReportController::class, 'index'])->name('reports.stock');
+    // Stock Terpasang, Stock Repair, Stock BK
+    Route::get('reports/stocks/{type}', [ReportController::class, 'stock'])->name('reports.stock');
+    // Transaksi Penarikan, Pemasangan
+    Route::get('reports/transactions/{type}', [ReportController::class, 'transaction'])->name('reports.transaction');
 });

@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Branch;
 use App\Models\Product;
 use App\Models\Store;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
     //
-    public function index(Request $request, $type)
+    public function stock(Request $request, $type)
     {
         $branches = Branch::orderBy('name')->get();
         $stores = [];
@@ -37,5 +38,36 @@ class ReportController extends Controller
         }
 
         return view($page, compact('branches', 'products', 'stores'));
+    }
+
+
+    public function transaction(Request $request, $type)
+    {
+        $transactions = [];
+        $page = '';
+
+        if ($type == "penarikan") {
+            $page = 'admin.reports.transaction_penarikan';
+        }
+
+        if ($type == "repair") {
+            $page = 'admin.reports.transaction_pemasangan';
+        }
+
+        if ($request->input('f_tanggal_start') && $request->input('f_tanggal_end')) {
+            $transactions = Transaction::where('type', $type)
+                ->whereDate(
+                    'tanggal_transaction',
+                    '>=',
+                    $request->input('f_tanggal_start')
+                )
+                ->whereDate(
+                    'tanggal_transaction',
+                    '<=',
+                    $request->input('f_tanggal_end')
+                )->get();
+        }
+
+        return view($page, compact('transactions'));
     }
 }

@@ -53,6 +53,14 @@
             font-weight: 600 !important;
             vertical-align: middle !important;
         }
+
+        html, body {
+            position: relative;
+            height: 100%;
+            background: #f5f7fa;
+            color: #505458;
+            font-size: 12px;
+        }
     </style>
 
     @stack('css-custome')
@@ -148,6 +156,12 @@
                             <li><a href="{{ route('admin.reports.stock', ['type' => 'bk']) }}"><i
                                         class="fa fa-print mr-2"></i>
                                     Stock Gudang BK</a></li>
+                            <li><a href="{{ route('admin.reports.transaction', ['type' => 'penarikan']) }}"><i
+                                        class="fa fa-print mr-2"></i>
+                                    Trans.. Penarikan</a></li>
+                            <li><a href="{{ route('admin.reports.transaction', ['type' => 'pemasangan']) }}"><i
+                                        class="fa fa-print mr-2"></i>
+                                    Trans.. Pemasangan</a></li>
                         </ul>
                     </li>
                 </ul>
