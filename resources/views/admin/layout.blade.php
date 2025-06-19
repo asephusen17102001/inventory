@@ -101,7 +101,7 @@
 
                 <!-- /.title -->
                 <ul class="menu js__accordion">
-                    <li class="">
+                    <li>
                         <a class="waves-effect" href="{{ route('admin.dashboard') }}"><i
                                 class="menu-icon mdi mdi-view-dashboard"></i><span>Dashboard</span></a>
                     </li>
@@ -163,6 +163,11 @@
                                         class="fa fa-print mr-2"></i>
                                     Trans.. Pemasangan</a></li>
                         </ul>
+                    </li>
+
+                    <li>
+                        <a class="waves-effect" href="{{ route('logout') }}"><i
+                                class="menu-icon mdi mdi-logout"></i><span>Logout</span></a>
                     </li>
                 </ul>
             </div>
