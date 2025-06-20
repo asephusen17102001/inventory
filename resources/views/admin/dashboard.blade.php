@@ -63,7 +63,7 @@
                 <h4 class="box-title text-success text-center">Pemangan Bulan ini</h4>
                 <div class="content widget-stat">
                     <div class="text-center">
-                        <h2 class="counter text-success">10</h2>
+                        <h2 class="counter text-success">{{ number_format($total_transaksi['pemasangan_per_mont'], 0, ',', '.') }}</h2>
                         <p class="text text-success mt-2">Transaksi</p>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                 <h4 class="box-title text-warning text-center">Penarikan Bulan ini</h4>
                 <div class="content widget-stat">
                     <div class="text-center">
-                        <h2 class="counter text-warning">200</h2>
+                        <h2 class="counter text-warning">{{ number_format($total_transaksi['penarikan_per_mont'], 0, ',', '.') }}</h2>
                         <p class="text text-warning mt-2">Transaksi</p>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                 <h4 class="box-title text-primary text-center">Stock Tersedia</h4>
                 <div class="content widget-stat">
                     <div class="text-center">
-                        <h2 class="counter text-primary">200</h2>
+                        <h2 class="counter text-primary">{{ number_format($stock_tersedia, 0,',', '.') }}</h2>
                         <p class="text text-primary mt-2">PCS / SET</p>
                     </div>
                 </div>
@@ -108,14 +108,14 @@
                     ],
                     datasets: [{
                             label: 'Penarikan',
-                            data: [120, 150, 180, 90, 200, 250, 230, 210, 160, 170, 190, 220],
+                            data: @json($data_grafik['total_transaksi_penarikan']),
                             backgroundColor: '#A31D1D',
                             borderRadius: 5,
                             barThickness: 10
                         },
                         {
                             label: 'Pemasangan',
-                            data: [100, 130, 160, 80, 170, 200, 210, 190, 150, 160, 170, 200],
+                            data: @json($data_grafik['total_transaksi_pemasangan']),
                             backgroundColor: '#003092',
                             borderRadius: 5,
                             barThickness: 10
