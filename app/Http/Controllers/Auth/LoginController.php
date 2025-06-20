@@ -14,6 +14,7 @@ class LoginController extends Controller
         if (Auth::check()) {
             return redirect()->intended(Auth::user()->role . '/dashboard'); // atau sesuai role
         }
+        $data = [];
         return view('auth.login');
     }
 
