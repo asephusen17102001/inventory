@@ -59,7 +59,7 @@
             height: 100%;
             background: #f5f7fa;
             color: #505458;
-            font-size: 12px;
+            font-size: 11px !important;
         }
     </style>
 
