@@ -54,7 +54,8 @@
             vertical-align: middle !important;
         }
 
-        html, body {
+        html,
+        body {
             position: relative;
             height: 100%;
             background: #f5f7fa;
@@ -70,7 +71,8 @@
 <body>
     <div class="main-menu">
         <header class="header">
-            <a href="{{ route('admin.dashboard') }}" class="logo"><i class="ico mdi mdi-cube-outline"></i>Admin Dashbaord</a>
+            <a href="{{ route('branch.dashboard') }}" class="logo"><i
+                    class="ico mdi mdi-cube-outline"></i>Admin Dashbaord</a>
             <button type="button" class="button-close fa fa-times js__menu_close"></button>
             <div class="user">
                 <a href="#" class="avatar"><img
@@ -85,7 +87,8 @@
                         {{-- <div class="control-item"><a href="javascript:void(0)"><i class="fa fa-user"></i> Profile</a>
                         </div>
                         <div class="control-item"><a href="javascript:void(0)"><i class="fas fa-cog"></i> Settings</a></div> --}}
-                        <div class="control-item"><a href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> Log out</a>
+                        <div class="control-item"><a href="{{ route('logout') }}"><i
+                                    class="fas fa-sign-out-alt"></i> Log out</a>
                         </div>
                     </div>
                     <!-- /.control-list -->
@@ -99,77 +102,54 @@
 
             <div class="navigation">
 
-                <!-- /.title -->
                 <ul class="menu js__accordion">
-                    <li>
-                        <a class="waves-effect" href="{{ route('admin.dashboard') }}"><i
-                                class="menu-icon mdi mdi-view-dashboard"></i><span>Dashboard</span></a>
+                    <li
+                        class="{{ request()->routeIs('branch.dashboard') ? 'active' : '' }}">
+                        <a class="waves-effect" href="{{ route('branch.dashboard') }}">
+                            <i class="menu-icon mdi mdi-view-dashboard"></i><span>Dashboard</span>
+                        </a>
                     </li>
-                    <li>
-                        <a class="waves-effect parent-item js__control" href="#"><i
-                                class="menu-icon mdi mdi-desktop-mac"></i><span>Master Data</span><span
-                                class="menu-arrow fa fa-angle-down"></span></a>
-                        <ul class="sub-menu js__content">
-                            <li><a href="{{ route('admin.products.index') }}"><i
-                                        class="ico mdi mdi-cube-outline mr-2"></i>
-                                    Produk</a></li>
-                            <li><a href="{{ route('admin.branches.index') }}"><i
-                                        class="fas fa-code-branch mr-2"></i>
-                                    Branch</a></li>
-                            <li><a href="{{ route('admin.stores.index') }}"><i
-                                        class="far fa-building mr-2"></i>
-                                    Toko</a></li>
-                            <li><a href="{{ route('admin.users.index') }}"><i
-                                        class="far fa-user mr-2"></i>
-                                    Users</a></li>
+                    <li
+                        class="{{ request()->routeIs('branch.stores.index') ? 'active' : '' }}">
+                        <a class="waves-effect" href="{{ route('branch.stores.index') }}">
+                            <i class="menu-icon far fa-building"></i><span>Toko</span>
+                        </a>
+                    </li>
+
+                    @php
+                        $laporanActive = request()->routeIs('branch.reports.transaction') &&
+                        in_array(request()->route('type'), ['penarikan', 'pemasangan']);
+                    @endphp
+                    <li
+                        class="{{ $laporanActive ? 'active' : '' }}">
+                        <a class="waves-effect parent-item js__control" href="javascript:void(0);">
+                            <i class="menu-icon fas fa-print"></i><span>Laporan</span>
+                            <span class="menu-arrow fa fa-angle-down"></span>
+                        </a>
+                        <ul class="sub-menu js__content"
+                            style="{{ $laporanActive ? 'display: block;' : 'display: none;' }}">
+                            <li>
+                                <a href="{{ route('branch.reports.transaction', ['type' => 'penarikan']) }}"
+                                    class="{{ request()->routeIs('branch.reports.transaction') && request()->route('type') === 'penarikan' ? 'active' : '' }}">
+                                    <i class="fa fa-print mr-2"></i>Trans.. Penarikan
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('branch.reports.transaction', ['type' => 'pemasangan']) }}"
+                                    class="{{ request()->routeIs('branch.reports.transaction') && request()->route('type') === 'pemasangan' ? 'active' : '' }}">
+                                    <i class="fa fa-print mr-2"></i>Trans.. Pemasangan
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
                     <li>
-                        <a class="waves-effect parent-item js__control" href="#"><i
-                                class="menu-icon far fa-list-alt"></i><span>Transaksi</span><span
-                                class="menu-arrow fa fa-angle-down"></span></a>
-                        <ul class="sub-menu js__content">
-                            <li><a
-                                    href="{{ route('admin.transactions.index', ['type' => 'penarikan']) }}"><i
-                                        class="far fa-arrow-alt-circle-left mr-2"></i>
-                                    Penarikan</a></li>
-
-                            <li><a
-                                    href="{{ route('admin.transactions.index', ['type' => 'pemasangan']) }}"><i
-                                        class="far fa-arrow-alt-circle-right mr-2"></i>
-                                    Pemasangan</a></li>
-
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="waves-effect parent-item js__control" href="#"><i
-                                class="menu-icon fas fa-print"></i><span>Laporan</span><span
-                                class="menu-arrow fa fa-angle-down"></span></a>
-                        <ul class="sub-menu js__content">
-                            <li><a href="{{ route('admin.reports.stock', ['type' => 'terpasang']) }}"><i
-                                        class="fa fa-print mr-2"></i>
-                                    Stock Terpasang</a></li>
-                            <li><a href="{{ route('admin.reports.stock', ['type' => 'repair']) }}"><i
-                                        class="fa fa-print mr-2"></i>
-                                    Stock Repair</a></li>
-                            <li><a href="{{ route('admin.reports.stock', ['type' => 'bk']) }}"><i
-                                        class="fa fa-print mr-2"></i>
-                                    Stock Gudang BK</a></li>
-                            <li><a href="{{ route('admin.reports.transaction', ['type' => 'penarikan']) }}"><i
-                                        class="fa fa-print mr-2"></i>
-                                    Trans.. Penarikan</a></li>
-                            <li><a href="{{ route('admin.reports.transaction', ['type' => 'pemasangan']) }}"><i
-                                        class="fa fa-print mr-2"></i>
-                                    Trans.. Pemasangan</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a class="waves-effect" href="{{ route('logout') }}"><i
-                                class="menu-icon mdi mdi-logout"></i><span>Logout</span></a>
+                        <a class="waves-effect" href="{{ route('logout') }}">
+                            <i class="menu-icon mdi mdi-logout"></i><span>Logout</span>
+                        </a>
                     </li>
                 </ul>
+
             </div>
             <!-- /.navigation -->
         </div>

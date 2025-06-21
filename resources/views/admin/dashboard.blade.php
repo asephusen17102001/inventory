@@ -5,7 +5,7 @@
 @section('content')
 <div class="main-content">
     <div class="row small-spacing">
-        <div class="col-xl-3 col-lg-6 col-12">
+        <div class="col-xl col-lg-6 col-12">
             <div class="box-content bg-success text-white">
                 <div class="statistics-box with-icon">
                     <i class="ico mdi mdi-cube-outline mr-2"></i>
@@ -16,7 +16,7 @@
             <!-- /.box-content -->
         </div>
         <!-- /.col-xl-3 col-lg-6 col-12 -->
-        <div class="col-xl-3 col-lg-6 col-12">
+        <div class="col-xl col-lg-6 col-12">
             <div class="box-content bg-info text-white">
                 <div class="statistics-box with-icon">
                     <i class="ico fas fa-code-branch"></i>
@@ -27,7 +27,7 @@
             <!-- /.box-content -->
         </div>
         <!-- /.col-xl-3 col-lg-6 col-12 -->
-        <div class="col-xl-3 col-lg-6 col-12">
+        <div class="col-xl col-lg-6 col-12">
             <div class="box-content bg-danger text-white">
                 <div class="statistics-box with-icon">
                     <i class="ico far fa-building"></i>
@@ -38,12 +38,25 @@
             <!-- /.box-content -->
         </div>
         <!-- /.col-xl-3 col-lg-6 col-12 -->
-        <div class="col-xl-3 col-lg-6 col-12">
+        <div class="col-xl col-lg-6 col-12">
             <div class="box-content bg-warning text-white">
                 <div class="statistics-box with-icon">
                     <i class="ico far fa-user"></i>
                     <p class="text text-white">Account User</p>
                     <h2 class="counter">{{ $total_user }}</h2>
+                </div>
+            </div>
+            <!-- /.box-content -->
+        </div>
+
+        <!-- /.col-xl-3 col-lg-6 col-12 -->
+        <div class="col-xl-3 col-lg-6 col-12">
+            <div class="box-content bg-secondary text-white">
+                <div class="statistics-box with-icon">
+                    <i class="ico fas fa-rss"></i>
+                    <p class="text text-white bold">{{ Auth::user()->name }}</p>
+                    <h4 class="counter">{{ Auth::user()->email }}</h4>
+                    <small>{{ request()->ip() }}</small>
                 </div>
             </div>
             <!-- /.box-content -->
@@ -107,14 +120,14 @@
                         'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
                     ],
                     datasets: [{
-                            label: 'Penarikan',
+                            label: 'Transaksi Penarikan',
                             data: @json($data_grafik['total_transaksi_penarikan']),
                             backgroundColor: '#A31D1D',
                             borderRadius: 5,
                             barThickness: 10
                         },
                         {
-                            label: 'Pemasangan',
+                            label: 'Transaksi Pemasangan',
                             data: @json($data_grafik['total_transaksi_pemasangan']),
                             backgroundColor: '#003092',
                             borderRadius: 5,
