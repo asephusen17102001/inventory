@@ -43,13 +43,13 @@
 
     <style>
         tr>th {
-            font-size: 12px !important;
+            font-size: 10px !important;
             font-weight: 900 !important;
             vertical-align: middle !important;
         }
 
         tr>td {
-            font-size: 12px !important;
+            font-size: 10px !important;
             font-weight: 600 !important;
             vertical-align: middle !important;
         }
@@ -59,7 +59,19 @@
             height: 100%;
             background: #f5f7fa;
             color: #505458;
-            font-size: 11px !important;
+            font-size: 10px !important;
+        }
+
+        .select2-selection__rendered {
+            line-height: 45px !important;
+        }
+
+        .select2-container .select2-selection--single {
+            height: 45px !important;
+        }
+
+        .select2-selection__arrow {
+            height: 45px !important;
         }
     </style>
 

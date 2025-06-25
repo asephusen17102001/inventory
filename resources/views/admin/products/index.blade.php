@@ -1,22 +1,6 @@
 @extends('admin.layout')
 @section('title', 'Product')
-@push('css-custome')
 
-<style>
-    tr>th {
-        font-size: 12px !important;
-        font-weight: 900 !important;
-        vertical-align: middle !important;
-    }
-
-    tr>td {
-        font-size: 12px !important;
-        font-weight: 600 !important;
-        vertical-align: middle !important;
-    }
-
-</style>
-@endpush
 
 @section('content')
 <div class="main-content">

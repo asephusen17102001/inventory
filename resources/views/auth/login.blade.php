@@ -32,25 +32,25 @@
                 <!-- /.frm-title -->
                 <div class="frm-input has-error">
                     <input type="email" name="email" placeholder="Email" class="frm-inp"
-                        value="{{ old('email') }}"><i class="fa fa-user frm-ico"></i>
+                        value="{{ old('email') }}" required><i class="fa fa-user frm-ico"></i>
                     @error('name')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <!-- /.frm-input -->
-                <div class="frm-input"><input type="password" name="password" placeholder="Password"
+                <div class="frm-input"><input type="password" name="password" required placeholder="Password"
                         value="{{ old('password') }}" class="frm-inp"><i
                         class="fa fa-lock frm-ico"></i></div>
                 <!-- /.frm-input -->
                 <div class="clearfix margin-bottom-20">
-                    <div class="float-left">
+                    {{-- <div class="float-left">
                         <div class="checkbox primary"><input type="checkbox" id="rememberme"><label
                                 for="rememberme">Remember me</label></div>
                         <!-- /.checkbox -->
-                    </div>
+                    </div> --}}
                     <!-- /.float-left -->
-                    <div class="float-right"><a href="#" class="a-link"><i class="fa fa-unlock-alt"></i>Forgot
-                            password?</a></div>
+                    {{-- <div class="float-right"><a href="#" class="a-link"><i class="fa fa-unlock-alt"></i>Forgot
+                            password?</a></div> --}}
                     <!-- /.float-right -->
                 </div>
                 <!-- /.clearfix -->
